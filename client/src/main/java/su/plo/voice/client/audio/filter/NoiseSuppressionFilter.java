@@ -39,6 +39,7 @@ public final class NoiseSuppressionFilter implements AudioFilter {
                 this.instance = Denoise.create();
             } catch (Exception | LinkageError e) {
                 BaseVoice.LOGGER.error("RNNoise is not available on this platform");
+                e.printStackTrace();
                 activeEntry.set(false);
                 activeEntry.setDisabled(true);
             }
