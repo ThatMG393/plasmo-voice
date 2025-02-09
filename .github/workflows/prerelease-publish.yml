@@ -31,13 +31,14 @@ jobs:
         cache-read-only: false
 
     - name: Build with Gradle
-      run: ./gradlew build --stacktrace -Psnapshot=true
+      run: ./gradlew build -Psnapshot=true
 
     - name: Publish to snapshots maven repository
+      continue-on-error: true
       env:
         MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
         MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
-      run: ./gradlew publish --stacktrace -Psnapshot=true
+      run: ./gradlew publish -Psnapshot=true
 
     - name: Publish to GitHub
       uses: Apehum/mc-publish@v1.1
